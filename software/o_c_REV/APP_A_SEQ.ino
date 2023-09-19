@@ -272,7 +272,7 @@ public:
   }
 
   bool octave_toggle() {
-    octave_toggle_ = (~octave_toggle_) & 1u;
+    octave_toggle_ = !octave_toggle_;
     return octave_toggle_;
   }
 
@@ -285,7 +285,7 @@ public:
   }
 
   void toggle_EoS() {
-    wait_for_EoS_ = (~wait_for_EoS_) & 1u;
+    wait_for_EoS_ = !wait_for_EoS_;
     apply_value(SEQ_CHANNEL_SETTING_DUMMY, wait_for_EoS_);
   }
 

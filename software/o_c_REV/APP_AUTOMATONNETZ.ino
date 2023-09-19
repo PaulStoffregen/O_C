@@ -190,7 +190,9 @@ public:
 
   void Init() {
     InitDefaults();
-    memset(cells_, 0, sizeof(cells_));
+    for (int i=0; i < GRID_CELLS; i++) {
+      cells_[i].InitDefaults(); //memset(cells_, 0, sizeof(cells_));
+    }
     grid.Init(cells_);
 
     quantizer.Init();
@@ -199,7 +201,8 @@ public:
     trigger_delays_.Init();
     strum_inhibit_ = false;
 
-    memset(&ui, 0, sizeof(ui));
+    ui.selected_cell = 0; //memset(&ui, 0, sizeof(ui));
+    ui.edit_cell = false;
     ui.cell_cursor.Init(CELL_SETTING_TRANSFORM, CELL_SETTING_LAST - 1);
     ui.grid_cursor.Init(GRID_SETTING_DX, GRID_SETTING_LAST - 1);
 
@@ -215,7 +218,9 @@ public:
   }
 
   void ClearGrid(ClearMode mode) {
-    memset(cells_, 0, sizeof(cells_));
+    for (int i=0; i < GRID_CELLS; i++) {
+      cells_[i].InitDefaults(); //memset(cells_, 0, sizeof(cells_));
+    }
     switch (mode) {
       case CLEAR_MODE_RAND_TRANSFORM:
         for (auto &cell : cells_)
@@ -280,7 +285,7 @@ public:
   }
 
   TransformCell cells_[GRID_CELLS];
-  CellGrid<TransformCell, GRID_DIMENSION, FRACTIONAL_BITS, GRID_EPSILON> grid;
+  CellGrid<TransformCell, GRID_DIMENSION, FRACTIONAL_BITS, (GRID_EPSILON != 0)> grid;
 
   OC::SemitoneQuantizer quantizer;
   TonnetzState tonnetz_state;

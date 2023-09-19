@@ -157,7 +157,7 @@ public:
   }
 
   bool octave_toggle() {
-    octave_toggle_ = (~octave_toggle_) & 1u;
+    octave_toggle_ = !octave_toggle_;
     return octave_toggle_;
   }
 
@@ -270,7 +270,7 @@ public:
   }
 
   void toggle_delay_mechanics() {
-    delay_type_ = (~delay_type_) & 1u;
+    delay_type_ = !delay_type_;
   }
 
   bool get_delay_type() const {
@@ -278,7 +278,7 @@ public:
   }
   
   void manual_freeze() {
-    freeze_switch_ = (~freeze_switch_) & 1u;
+    freeze_switch_ = !freeze_switch_;
   }
 
   void clear_freeze() {

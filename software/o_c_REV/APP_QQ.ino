@@ -408,7 +408,7 @@ public:
   }
 
   void instant_update() {
-    instant_update_ = (~instant_update_) & 1u;
+    instant_update_ = !instant_update_;
   }
 
   inline void Update(uint32_t triggers, DAC_CHANNEL dac_channel) {
